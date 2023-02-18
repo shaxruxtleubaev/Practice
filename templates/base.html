@@ -1,0 +1,224 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock title %}
+    </title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="https://cdn-icons-png.flaticon.com/512/869/869432.png">
+    
+    <style>
+        .dropbtn {
+        background-color: #3498DB;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        }
+
+        .dropbtn:hover, .dropbtn:focus {
+        background-color: #2980B9;
+        }
+
+        .dropdown {
+        position: relative;
+        display: inline-block;
+        margin: 0 0 0 1%;
+        }
+
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        overflow: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+
+        .dropdown a:hover {background-color: #ddd;}
+
+        .show {display: block;}
+
+        .info {background-color: #2196F3;} /* Blue */
+        .info:hover {background: #0b7dda;}
+
+        *, *:before, *:after {
+        box-sizing: inherit;
+        }
+
+        .column {
+        float: left;
+        width: 30%;
+        margin: 0 0 12px 0;
+        padding: 0 8px;
+        }
+
+        .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        margin: 8px;
+        height: min-content;
+        }
+
+        .about-section {
+        padding: 50px;
+        text-align: center;
+        background-color: #474e5d;
+        color: white;
+        }
+
+        .container {
+        padding: 0 16px;
+        }
+
+        .container::after, .row::after {
+        content: "";
+        clear: both;
+        display: table;
+        }
+
+        .title {
+        color: grey;
+        }
+
+        .button {
+        border: none;
+        outline: 0;
+        display: inline-block;
+        padding: 8px;
+        color: white;
+        background-color: #000;
+        text-align: center;
+        cursor: pointer;
+        width: 100%;
+        }
+
+        .button:hover {
+        background-color: #555;
+        }
+
+        @media screen and (max-width: 650px) {
+        .column {
+            width: 100%;
+            display: block;
+        }
+        }
+
+        .pagination a{
+            border: 1px solid;
+            padding: 5px;
+            text-decoration: none;
+            color: black;
+            background-color: #99d1ff;
+            border-radius: 5px;
+            border-style: none;
+            font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            opacity: 60%;
+        }
+
+        .pagination {
+            margin: 0 0 0 1%;
+        }
+
+        .pagination p {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+
+        .step-links {
+            margin: 50px;
+        }
+
+        .pagination a:hover {
+            opacity: 100%;
+            background-color: #c8e6ff;
+        }
+
+        
+        .availab-yes {
+        margin: 0 0 10px 1%;
+        padding: 5px;
+        background: rgb(110, 255, 110);
+        border-radius: 10px;
+        width: 120px;
+        }
+
+        .availab-no {
+        margin: 0 0 10px 1%;
+        padding: 5px;
+        background: rgb(255, 110, 110);
+        border-radius: 10px;
+        width: max-content;
+        }
+        
+        .descc {
+        background-color: rgb(241, 241, 241);
+        padding: 15px;
+        border-radius: 10px;
+        }
+
+        .rubric {
+            margin: 0 0 1% 1%;
+        }
+
+        .product_name {
+            margin: 1% 0 1% 1%;
+            background-color: #2195f354;
+            width: max-content;
+            padding: 1%;
+            border-radius: 15px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div>
+        {% include 'header.html' %}
+    </div>
+    
+    
+    {% block content %}
+    {% endblock content %}
+    <p style="margin: 300px 0 300px 0;"></p>
+    <footer>
+        {% include 'footer.html' %}
+    </footer>
+        
+    <script src="{% static 'main.js' %}"></script>
+    <script>
+        /* When the user clicks on the button, 
+        toggle between hiding and showing the dropdown content */
+        function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        // Close the dropdown if the user clicks outside of it
+        window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+            }
+        }
+        }
+    </script>
+</body>
+</html>

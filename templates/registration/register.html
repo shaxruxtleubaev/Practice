@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	User registration field
+{% endblock title %}
+
+{% block content %}
+    <div class="register">    
+        <h1>User Registration </h1>
+        <form method="post">
+            <table>
+                <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="150" autocapitalize="none" autocomplete="username" autofocus required id="id_username"></p>
+                <p><label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required id="id_password1"> <span class="helptext"><ul style="font-size: 12px;"></ul></span></p>
+                <p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" required id="id_password2"> <span class="helptext">
+                    <div class="alert">
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                        <strong>Attention!</strong> Enter the same password as before, for verification.
+                    </div>
+                </span></p> 
+                <!-- {{ form|crispy }} -->
+                {% csrf_token %}
+                <tr class="signupp">
+                    <td>&nbsp;</td>
+                    <td><input type="submit" value="Sign up"></td>
+                </tr>
+            </table>
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+{% endblock content %}

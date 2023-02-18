@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	Quote login
+{% endblock title %}
+
+{% block content %}
+    <div class="loginn">
+        <h2 style="margin-left: 1%;"><i class="fa fa-sign-in" aria-hidden="true"></i> Login Form</h2>
+        <form method="post" action="{% url 'login' %}">
+            <div class="container" style="
+                padding: 16px;
+            ">
+                <p><label for="id_username">Username:</label> <input style="
+                        width: 100%;
+                        padding: 12px 20px;
+                        margin: 8px 0 0 0.7%;
+                        display: inline-block;
+                        border: 1px solid #ccc;
+                        box-sizing: border-box;
+                " type="text" name="username" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username"></p>
+                <p><label for="id_password">Password:</label> <input style="
+                        width: 100%;
+                        padding: 12px 20px;
+                        margin: 8px 0 0 1%;
+                        display: inline-block;
+                        border: 1px solid #ccc;
+                        box-sizing: border-box;
+                    " type="password" name="password" autocomplete="current-password" required id="id_password"></p>
+                {% csrf_token %}
+                <tr>
+                    <td>&nbsp;</td>
+                    <td><input style="
+                            background-color: #04AA6D;
+                            color: white;
+                            padding: 14px 20px;
+                            margin: 8px 0;
+                            border: none;
+                            cursor: pointer;
+                            width: 20%;
+                        " type="submit" value="login"></td>
+                </tr>
+            </div>
+            <p style="margin-left: 1%;">
+                Not registered yet?
+                <a href="{% url 'register' %}">Register here</a>
+            </p>
+            <input type="hidden" name="next" value="{{ next }}">
+        </form>
+    </div>
+{% endblock content %}

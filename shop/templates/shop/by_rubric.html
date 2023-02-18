@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock title %}
+
+{% block content %}
+    <section>
+        <h1>Let's go shopping.</h1>
+    </section>
+    
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn"><i class="fa fa-th-list" aria-hidden="true"></i> Categories</button>
+        <div id="myDropdown" class="dropdown-content">
+        <a href="{% url 'product_list' %}">All</a>
+        {% for rubric in rubrics %}
+            <a href="/rubrics/{{ rubric.pk }}">{{rubric.name}}</a>
+        {% endfor %}
+        </div>
+        <h5 style="margin: 0 0 10px 3%; opacity: 50%; width: 100%;">Current: {{ current_rubric }}</h5>
+    </div>
+    <p style="margin: 10px 0 10px 0;"></p>
+
+    {% for product in products %}
+        <div class="card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="" id="image">
+            {% endif %}    
+            <h1 style="margin-top: 10px; font-size: 20px;">{{ product.name }}</h1>
+            <div class="divvv">
+                <p class="price">{{ product.price }}$</p>
+                <a href="{{ product.get_absolute_url }}">
+                    <button class="">View <i class="fa fa-eye" aria-hidden="true"></i></button>
+                </a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}

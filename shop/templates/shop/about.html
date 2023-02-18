@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    About page
+{% endblock title %}
+
+{% block content %}
+    <p style="margin: 135px 0 0 0;"></p>
+    <div class="about-section">
+        <h1>About Us Page</h1>
+        <p>Some text about who we are and what we do.</p>
+    </div>
+    
+    <h2 style="text-align:center">Our Team</h2>
+    <div class="row">
+        <div class="column">
+        <div class="card">
+            <img src="{% static 'shax_1.jpg' %}" alt="Jane" style="width:100%">
+            <div class="container">
+            <h2>Tleubaev Shaxruxxan</h2>
+            <p class="title">Designer</p>
+            <p>He is our UX/UI and frontend developer</p>
+            <p>shaxruxtleubaev@gmail.com</p>
+            </div>
+        </div>
+        </div>
+    
+        <div class="column">
+        <div class="card">
+            <img src="{% static 'shax_2.jpg' %}" alt="Mike" style="width:100%">
+            <div class="container">
+            <h2>Shaxruxxan Tleubaev</h2>
+            <p class="title">Server supporter</p>
+            <p>He is our Backend and Server responsive developer</p>
+            <p>tleubaevshaxrux@outlook.com</p>
+            </div>
+        </div>
+        </div>
+        
+        <div class="column">
+        <div class="card">
+            <img src="{% static 'shax_3.jpg' %}" alt="John" style="width:100%">
+            <div class="container">
+            <h2>Shakhrookhkhan</h2>
+            <p class="title">Team leader</p>
+            <p>He is our engine of all actions</p>
+            <p>shakhrookhkhan@email.com</p>
+            </div>
+        </div>
+        </div>
+    </div>
+{% endblock %}

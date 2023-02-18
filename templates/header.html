@@ -1,0 +1,51 @@
+{% load static %}
+<div id="navbar">
+    <a style="margin-top: 10px;" id="logo" onclick="openNav()">
+        <div class="divv"></div>
+        <div class="divv"></div>
+        <div class="divv"></div>
+    </a>
+    <a href="{% url 'product_list' %}" style="padding: 20px;"><i class="fa fa-home" aria-hidden="true"></i></a>
+    <div id="navbar-right">
+        
+        {% if user.is_authenticated %}
+            
+        {% else %}  
+            <a class="active" href="{% url 'register' %}">Sign Up</a>
+            <a href="{% url 'login' %}?next=/">Log in</a>
+        {% endif %}
+        <a style="float: right"  href="" style="cursor: not-allowed;"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="badge">0</span></a>
+    </div>
+    <div id="mySidenav" class="sidenav" >
+        <div class="div" style="margin: 0 0 20px 0;">
+            <img src="{% static 'user_photo.png' %}" alt="Avatar" class="image">
+            <h4 style="float: left; width: 30%; text-align: left; color: white;">{{ user }}</h4>
+            {% if user.is_staff or user.is_authenticted %}
+                <a style="color: white;
+                            width: 20%; 
+                            float: right; 
+                            text-align: center;
+                            font-size: 15px;"
+                            href="{% url 'logout' %}?next=/"><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+            {% endif %}
+        </div>
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: white;">&times;</a>
+        <a href="{% url 'about' %}" style="color: white; 
+                            width: 55%; 
+                            text-align: left;
+                            font-size: 20px;">
+                            <i class="fa fa-eercast" aria-hidden="true"></i> About
+        </a>
+        <a href="/contact" style="color: white; width: 55%; 
+                                    text-align: left;
+                                    font-size: 20px;">
+            <i class="fa fa-pencil-square-o" aria-hidden="true"></i> 
+            Contact
+        </a>
+        {% if user.is_staff %}
+            <a href="/admin/shop/product/add/" style="color: white; width: 55%; text-align: left; font-size: 20px; font-size: 20px;"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Add product</a>
+            <a href="admin/" style="color: white; width: 55%; text-align: left; font-size: 20px;"><i class="fa fa-users" aria-hidden="true"></i> Admin</a>
+            <a href="api/" style="color: white; width: 55%; text-align: left; font-size: 20px;"><i class="fa fa-link" aria-hidden="true"></i> API</a>
+        {% endif %}
+    </div>
+</div>

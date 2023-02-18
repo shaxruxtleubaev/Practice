@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Search Page
+{% endblock title %}
+
+{% block content %}
+    <section>
+        <h1>Search results..</h1>
+    </section>
+
+    <p style="margin: 10px 0 10px 0;"></p>
+    {% for search in object_list %}
+        <div class="card">
+            {% if search.image %}
+                <img src="{{ search.image.url }}" alt="" id="image">
+            {% endif %}    
+            <h1 style="margin-top: 10px; font-size: 20px;">{{ search.name }}</h1>
+            <div class="divvv">
+                <p class="price">{{ search.price }}$</p>
+                <a href="{{ search.get_absolute_url }}">
+                    <button class="">View <i class="fa fa-eye" aria-hidden="true"></i></button>
+                </a>
+            </div>
+        </div>
+        
+    {% endfor %}
+{% endblock content %}

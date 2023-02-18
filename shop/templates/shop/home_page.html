@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Home Page
+{% endblock title %}
+
+
+<!-- <p>I'm <span class="typed" data-typed-items="Programmer, Freelancer, Moviemaker"></span></p>
+  /**
+   * Hero type effect
+   */
+  const typed = select('.typed')
+  if (typed) {
+    let typed_strings = typed.getAttribute('data-typed-items')
+    typed_strings = typed_strings.split(',')
+    new Typed('.typed', {
+      strings: typed_strings,
+      loop: true,
+      typeSpeed: 100,
+      backSpeed: 50,
+      backDelay: 2000
+    });
+  } -->
+{% block content %}
+    <section>
+        <h1>Let's go shopping.</h1>
+    </section>
+    
+    <div class="dropdown">
+        <button onclick="myFunction()" class="dropbtn"><i class="fa fa-th-list" aria-hidden="true"></i> Categories</button>
+        <div id="myDropdown" class="dropdown-content">
+        <a href="{% url 'product_list' %}">All</a>
+        {% for rubric in rubrics %}
+            <a href="/rubrics/{{ rubric.pk }}">{{rubric.name}}</a>
+        {% endfor %}
+        </div>
+        <h5 style="margin: 0 0 10px 3%; opacity: 50%;">Current: All</h5>
+    </div>
+    <form action="{% url 'search_results' %}" method="get" style="border: none; float: right; height: 5px; margin: 0 1% 0 0;">
+        <input name="q" type="text" placeholder="Search...">
+    </form>
+    
+    <p style="margin: 25px 0 20px 0;"></p>
+    {% for product in products %}
+        <div class="card">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="" id="image">
+            {% endif %}    
+            <h1 style="margin-top: 10px; font-size: 20px;">{{ product.name }}</h1>
+            <div class="divvv">
+                <p class="price">{{ product.price }}$</p>
+                <a href="{{ product.get_absolute_url }}">
+                    <button class="">View <i class="fa fa-eye" aria-hidden="true"></i></button>
+                </a>
+            </div>
+        </div>
+        
+    {% endfor %}
+
+<!--  
+    <div class="pagination">
+        <span class="step-links">
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                <a href="?page={{ page_obj.next_page_number }}">next</a>            
+            {% endif %}
+        </span>
+    </div>
+-->
+    <div class="pagination">
+        <span class="step-links">
+            <p>Current page: {{ page_obj.number }} </p>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left" aria-hidden="true"></i>previous</a>
+            {% endif %}
+            {% for i in paginator %}
+                <a href="?page={{ i.number }}">{{ i.number }}</a>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock content %}

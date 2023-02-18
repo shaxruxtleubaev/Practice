@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+	Contact us
+{% endblock %}
+
+{% block content %}
+	{% if submitted %}
+		<p class="submitted" >
+			Your message was submitted succesfully, Thank you. <a href="{% url 'product_list' %}"></a>
+		</p>
+        
+	{% else %}
+		<form action="" method="post" novalidate class="contactt">
+			<table>
+				{% csrf_token %}
+                {{ form|crispy }}
+			</table>
+            <tr>
+                <td>&nbsp;</td>
+                <td><input type="submit"></td>
+            </tr>
+		</form>
+	{% endif %}
+{% endblock %}

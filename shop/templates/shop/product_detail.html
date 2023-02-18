@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Product Detail
+{% endblock title %}
+
+{% block content %}
+    <section class="sect">
+        <H1>Let's go buy..</H1>        
+    </section>
+    <div style="width: 95%; margin: 0 0 60px 30px;">
+        <div class="IMG" style="float: left; width: 30%;">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="" id="image" style="width: 100%; height: 100%;">
+            {% endif %}   
+            <a href="">
+                <a href="{% url 'product_list' %}">
+                    <button style="width: 80%; background-color: rgb(101, 168, 255); margin: 0 0 0 20px;">Back <i class="fa fa-home" aria-hidden="true"></i></button>
+                </a>
+                <button style="cursor: not-allowed; background-color: rgb(94, 92, 92); width: 80%; margin: 0 0 0 20px;">
+                    Share with email (Unavailable)<i class="fa fa-envelope-o" aria-hidden="true"></i>
+                </button>
+                <button style="cursor: not-allowed; background-color: rgb(94, 92, 92); width: 80%; margin: 0 0 0 20px;">
+                    Add to Cart (Unavailable)<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                </button>
+                {% if user.is_staff %}
+                    <a href="admin/shop/product/{{ product.id }}/change/">
+                        <button style="width: 80%; background-color: rgb(50, 201, 71); margin: 20px 0 0 20px;">
+                            Edit <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </button>
+                    </a>    
+                    <a href="admin/shop/product/{{ product.id }}/delete/">
+                        <button style="width: 80%; background-color: rgb(201, 50, 50); margin: 0 0 0 20px;">
+                            Delete <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </a>  
+                {% endif %}    
+            </a>
+            <p style="margin: 100px 0 100px 0;"></p>
+        </div>
+        <div class="descc" style="float: left; max-width: 65%; margin: 10px 0 0 10px;">
+            <h1 class="product_name">{{ product.name }}</h1>
+            <p class="price">{{ product.price }}$</p>
+            <h4 class="rubric">Rubric: {{ product.rubric }}</h4>
+            {% if product.digital == True %}
+                <h4 class="availab-yes">Available: Yes</h4>
+            {% elif product.digital == False %}    
+                <h4 class="availab-no">Available: No</h4>  
+            {% endif %}    
+
+            {% if product.description %}
+                <p class="descript" style="margin: 20px 0 5% 0; float: right;">Description: {{ product.description }}</p>
+            {% else %}
+                <p class="descript" style="margin-top: 20px; float: right;">Description: Empty</p>
+            {% endif %}    
+        </div>
+    </div>
+    <!--  
+    <div class="pagination">
+        <span class="step-links">
+            <p>Current page: {{ page_obj.number }} </p>
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}"><i class="fa fa-angle-double-left" aria-hidden="true"></i>previous</a>
+            {% endif %}
+            {% for i in paginator %}
+                <a href="?page={{ i.number }}">{{ i.number }}</a>
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next<i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+            {% endif %}
+        </span>
+    </div>
+    -->
+{% endblock content %}
