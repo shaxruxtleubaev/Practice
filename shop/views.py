@@ -6,6 +6,12 @@ from shop.forms import ContactForm
 from django.core.mail import send_mail, get_connection
 from django.http import HttpResponseRedirect
 from django.db.models import Q 
+from django.views.generic import TemplateView
+
+class ServiceWorkerView(TemplateView):
+    template_name = 'sw.js'
+    content_type = 'application/javascript'
+    name = 'sw.js'
 
 class ProductListView(ListView):
 	template_name = 'shop/home_page.html'
