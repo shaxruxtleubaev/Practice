@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
 
 {% block title %}
 	Contact us
@@ -10,7 +9,7 @@
 		<p class="submitted" >
 			Your message was submitted succesfully, Thank you. <a href="{% url 'product_list' %}"></a>
 		</p>
-        
+
 	{% else %}
 		<form action="" method="post" novalidate class="contactt">
 			<table>
