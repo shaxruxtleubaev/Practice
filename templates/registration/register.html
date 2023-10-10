@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load crispy_forms_tags %}
+
 
 {% block title %}
 	User registration field
@@ -18,7 +18,7 @@
                         <strong>Attention!</strong> Enter the same password as before, for verification.
                     </div>
                 </span></p> 
-                <!-- {{ form|crispy }} -->
+
                 {% csrf_token %}
                 <tr class="signupp">
                     <td>&nbsp;</td>
